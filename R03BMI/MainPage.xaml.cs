@@ -18,7 +18,39 @@ namespace R03BMI
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+            String height = heighit.Text;
+            String weight = weighit.Text;
+            double b= 0;
+            double hm = 0;
+            try
+            {
+                double h = double.Parse(height);
+                double w = double.Parse(weight);
+                if (h > 5)
+                {
+                    hm = h / 100;
+                    b = w / (hm * hm);
+                    double bmi = Math.Round(b * 10.0) / 10.0;
 
+                    result.Text = "身長" + h + "cm、体重" + w + "kgの人のBMIは、" + bmi + "です";
+                }
+
+                else
+                {
+                    hm = h;
+                    b = w / (hm * hm);
+                    double bmi = Math.Round(b * 10.0) / 10.0;
+
+                    result.Text = "身長" + h + "m、体重" + w + "kgの人のBMIは、" + bmi + "です";
+                }
+
+
+            }
+            catch(FormatException ex)
+            {
+                Console.WriteLine(ex);
+                result.Text = "!!!";
+            }
         }
     }
 }
